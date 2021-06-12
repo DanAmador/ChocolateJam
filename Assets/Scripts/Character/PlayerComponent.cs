@@ -9,13 +9,17 @@ namespace Character {
 		public float speed;
 		public int health;
 
-
+		public GameObject shadowPrefab;
 		private PathRecorder _pr;
-		[SerializeField] private ShadowPathPatrol nextSpawn;
+		private ShadowPathPatrol _nextSpawn;
 
+		
+		
 		private void Start() {
 			_pr = GetComponent<PathRecorder>();
-			_pr.shadowPath = nextSpawn.pathToFollow;
+			_nextSpawn = TrashMan.spawn(shadowPrefab).GetComponent<ShadowPathPatrol>();
+			_nextSpawn.gameObject.SetActive(false);
+			_pr.shadowPath = _nextSpawn.pathToFollow;
 			_pr.StartRecording();
 		}
 
@@ -25,12 +29,13 @@ namespace Character {
 
 		[Button()]
 		public void SpawnShadow() {
-			Debug.Log("nigga");
-			// _pr.StopRecording();
-			// TODO spawn from trashcan
+			_pr.StopRecording();
 
-			// nextSpawn.enabled = true;
-			// nextSpawn
+			_nextSpawn.Spawn();
+			_nextSpawn = TrashMan.spawn(shadowPrefab).GetComponent<ShadowPathPatrol>();
+			_nextSpawn.gameObject.SetActive(false);
+			_pr.shadowPath = _nextSpawn.pathToFollow;
+			_pr.StartRecording();
 		}
 
 		public void AddHealth() {
