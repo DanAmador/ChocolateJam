@@ -12,13 +12,10 @@ namespace Shadow {
 		public float refreshRate = (10f / 60f);
 
 		private float _timeSinceLastRecord = 0;
-
-
 		private bool _recording = true;
 
 
-		[SerializeField] private PathDataFrame lastShadowFrame;
-
+		private PathDataFrame _lastShadowFrame;
 		private Vector3 _lastPosition, _lastDirection;
 		
 		[Range(0.2f, 2f),SerializeField] private double minSaveDistance;
@@ -50,17 +47,20 @@ namespace Shadow {
 				Vector3 t = transform.position;
 				_lastDirection = t - _lastPosition;
 				_lastPosition = t;
-				lastShadowFrame = new PathDataFrame(t, _lastDirection);
-				shadowPath.Add(lastShadowFrame);
+				_lastShadowFrame = new PathDataFrame(t, _lastDirection);
+				shadowPath.Add(_lastShadowFrame);
 			}
-			else {
-				lastShadowFrame.amountOfFrames++;
-			}
+
 		}
 
 		#endregion
 
 
+		[Button()]
+		public void StartRecording() {
+			_recording = true;
+			shadowPath.Reset();
+		}
 		[Button()]
 		public void StopRecording() {
 			SaveFrame();
