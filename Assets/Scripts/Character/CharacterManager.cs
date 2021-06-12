@@ -30,7 +30,7 @@ namespace Character {
 			//TODO spawn from trashcan
 
 			nextSpawn.enabled = true;
-			nextSpawn
+			// nextSpawn
 		}
 	}
 }
