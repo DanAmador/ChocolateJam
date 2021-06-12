@@ -378,7 +378,7 @@ MonoBehaviour:
   recycleBinCollection:
   - prefab: {fileID: 4250482891988014596, guid: 0e3b433267fd04948a70825633ee9949, type: 3}
     instancesToPreallocate: 50
-    instancesToAllocateIfEmpty: 1
+    instancesToAllocateIfEmpty: 10
     imposeHardLimit: 0
     hardLimit: 5
     cullExcessPrefabs: 0
@@ -419,15 +419,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230209, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.705442
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230209, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9892998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230209, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4773045
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230209, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_LocalRotation.w
