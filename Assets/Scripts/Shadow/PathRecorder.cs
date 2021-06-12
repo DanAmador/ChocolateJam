@@ -21,7 +21,7 @@ namespace Shadow {
 
 		#region Unity Loop
 
-		void Start() {
+		void Awake() {
 			shadowPath = GetComponent<ShadowPath>();
 		}
 

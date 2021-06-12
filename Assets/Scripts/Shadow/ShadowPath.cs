@@ -36,7 +36,7 @@ namespace Shadow {
 
 		public LTSpline spline;
 
-		void Start() {
+		void Awake() {
 			_startTime = Time.time;
 			_frames = new List<PathDataFrame>();
 		}
@@ -45,7 +45,6 @@ namespace Shadow {
 		public void Add(PathDataFrame lastShadowFrame) {
 			_frames.Add(lastShadowFrame);
 		}
-
 
 
 		public void ClosePath(float duration = 0) {
@@ -64,7 +63,7 @@ namespace Shadow {
 			}
 		}
 
-		public void UpdatePath( Vector3[] newOffsets, float duration) {
+		public void UpdatePath(Vector3[] newOffsets, float duration) {
 			_frames.Clear();
 			Vector3 startPoint = transform.position;
 			foreach (Vector3 offset in newOffsets) {
@@ -77,7 +76,13 @@ namespace Shadow {
 
 		public void Reset() {
 			_startTime = Time.time;
-			_frames.Clear();
+			if (_frames == null) {
+				_frames = new List<PathDataFrame>();
+			}
+			else {
+				_frames.Clear();
+			}
+
 			closed = false;
 		}
 	}

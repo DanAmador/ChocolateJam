@@ -3,21 +3,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Character {
+	[RequireComponent(typeof(CharacterManager))]
 	public class AnimationAndMovementController : MonoBehaviour {
 		private PlayerInput _playerInput;
 		private CharacterController _characterController;
 		private Vector2 _currentMovementInput;
 		private Vector3 _currentMovement;
 
+		private CharacterManager cm;
 
-		public float speed;
 		public bool IsMovementPressed => _currentMovement.x != 0 || _currentMovement.y != 0;
 
-		public AnimationAndMovementController(Vector3 currentMovement) {
-			this._currentMovement = currentMovement;
-		}
 
 		private void Awake() {
+			cm = GetComponent<CharacterManager>();
 			_playerInput = new PlayerInput();
 			_characterController = GetComponent<CharacterController>();
 			_playerInput.CharacterController.Move.started += OnMovementInput;
@@ -33,7 +32,7 @@ namespace Character {
 		}
 
 		private void Update() {
-			_characterController.Move(_currentMovement * (Time.deltaTime * speed));
+			_characterController.Move(_currentMovement * (Time.deltaTime * cm.speed));
 		}
 
 		private void OnEnable() {
