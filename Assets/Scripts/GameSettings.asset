@@ -23,5 +23,5 @@ MonoBehaviour:
     number: 5
   - name: Score
     properties: {fileID: 11400000, guid: 3804eafe903718d47b0ab9e8a2664e55, type: 2}
-    prefab: {fileID: 0}
-    number: 0
+    prefab: {fileID: 7849627101976533709, guid: 0692e4890fab6ed4ca47e7a63028fd8b, type: 3}
+    number: 2
