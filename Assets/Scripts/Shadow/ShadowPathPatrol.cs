@@ -37,5 +37,22 @@ namespace Shadow {
 				pathToFollow.UpdatePath(remainingInfo.Item1, remainingInfo.Item2);
 			}
 		}
+
+		public void Spawn() {
+			
+			this.gameObject.SetActive(true); ;
+			// pathToFollow.ClosePath();
+		}
+
+
+		private void OnCollisionEnter(Collision other) {
+			ShadowPathPatrol patrol;
+
+			if (other.gameObject.TryGetComponent(out patrol)) {
+				
+				
+			}
+
+		}
 	}
 }

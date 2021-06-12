@@ -1,6 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
-public class SpeedCollectable : BaseItem {
+namespace Collectables.Components {
+	public class SpeedCollectable : BaseItem {
+		protected override void ApplyCollectable(PlayerComponent player) {
+			Debug.Log("ay lemao gotta go fast go speed racer, go ");
+		}
+	}
 }

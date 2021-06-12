@@ -3,20 +3,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Character {
-	[RequireComponent(typeof(CharacterManager))]
+	[RequireComponent(typeof(PlayerComponent))]
 	public class AnimationAndMovementController : MonoBehaviour {
 		private PlayerInput _playerInput;
 		private CharacterController _characterController;
 		private Vector2 _currentMovementInput;
 		private Vector3 _currentMovement;
 
-		private CharacterManager cm;
+		private PlayerComponent cm;
 
 		public bool IsMovementPressed => _currentMovement.x != 0 || _currentMovement.y != 0;
 
 
 		private void Awake() {
-			cm = GetComponent<CharacterManager>();
+			cm = GetComponent<PlayerComponent>();
 			_playerInput = new PlayerInput();
 			_characterController = GetComponent<CharacterController>();
 			_playerInput.CharacterController.Move.started += OnMovementInput;

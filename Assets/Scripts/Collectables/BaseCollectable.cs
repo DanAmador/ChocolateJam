@@ -1,84 +1,89 @@
-using NaughtyAttributes;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Character;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseItem : MonoBehaviour
-{
-    public UnityEvent onCollected;
+namespace Collectables {
+	public abstract class BaseItem : MonoBehaviour {
+		public UnityEvent onCollected;
 
-    private MapComponent map;
-    [SerializeField, Expandable] protected CollectableProperties itemProperties;
-    [SerializeField] protected ItemStats itemStats;
-    [Serializable]
-    public struct ItemStats
-    {
-        public float created;
-        public float age;
-        public ItemState state;
+		private MapComponent map;
+		[SerializeField, Expandable] protected CollectableProperties itemProperties;
+		[SerializeField] protected ItemStats itemStats;
 
-    }
-    public enum ItemState
-    {
-        PRISTINE,
-        USED,
-        DECAYING,
-    }
+		[Serializable]
+		public struct ItemStats {
+			public float created;
+			public float age;
+			public ItemState state;
+		}
 
-    private UnityEvent itemStateChanged;
-    [SerializeField]
-    private float timeUntilDecay;
+		public enum ItemState {
+			PRISTINE,
+			DECAYING,
+		}
 
-    void OnEnable() {
-        itemStats.created = Time.time / 60f;
-        itemStats.state = ItemState.PRISTINE;
-        timeUntilDecay = float.MaxValue;
-    }
+		private UnityEvent itemStateChanged;
+		[SerializeField] private float timeUntilDecay;
 
-    public virtual void Init(MapComponent map, CollectableProperties itemProperties) {
-        this.map = map;
-        this.itemProperties = itemProperties;
-    }
+		void OnEnable() {
+			itemStats.created = Time.time / 60f;
+			itemStats.state = ItemState.PRISTINE;
+			timeUntilDecay = float.MaxValue;
+		}
 
-    private void Start() {
-        itemStateChanged = new UnityEvent();
-        itemStateChanged.AddListener(OnItemStateChanged);
-        onCollected = new UnityEvent();
-    }
+		public virtual void Init(MapComponent map, CollectableProperties itemProperties) {
+			this.map = map;
+			this.itemProperties = itemProperties;
+		}
 
-    void Update() {
-        Age();
-    }
+		private void Start() {
+			itemStateChanged = new UnityEvent();
+			itemStateChanged.AddListener(OnItemStateChanged);
+			onCollected = new UnityEvent();
+		}
 
-    private void Age() {
-        itemStats.age = Time.realtimeSinceStartup / 60 - itemStats.created;
+		void Update() {
+			Age();
+		}
 
-        if (itemStats.state != ItemState.DECAYING &&
-            (itemStats.age >= itemProperties.maxLifetime - itemProperties.durationOfDecay ||
-            UnityEngine.Random.Range(0f, 1f) <= itemProperties.chanceOfDecay * Time.deltaTime ||
-            (itemStats.state == ItemState.USED && UnityEngine.Random.Range(0f, 1f) <= itemProperties.chanceOfDecay * Time.deltaTime * 2))) {
-            itemStats.state = ItemState.DECAYING;
-            itemStateChanged.Invoke();
-            timeUntilDecay = itemProperties.durationOfDecay;
-        }
+		private void Age() {
+			itemStats.age = Time.realtimeSinceStartup / 60 - itemStats.created;
 
-        if (itemStats.state == ItemState.DECAYING) {
-            timeUntilDecay -= Time.deltaTime;
-            if (timeUntilDecay <= 0) {
-                Destroy(gameObject);
-            }
-        }
-    }
+			if (itemStats.state != ItemState.DECAYING &&
+			    (itemStats.age >= itemProperties.maxLifetime - itemProperties.durationOfDecay ||
+			     UnityEngine.Random.Range(0f, 1f) <= itemProperties.chanceOfDecay * Time.deltaTime ||
+			     (UnityEngine.Random.Range(0f, 1f) <=
+				     itemProperties.chanceOfDecay * Time.deltaTime * 2))) {
+				itemStats.state = ItemState.DECAYING;
+				itemStateChanged.Invoke();
+				timeUntilDecay = itemProperties.durationOfDecay;
+			}
 
-    protected virtual void OnItemStateChanged() { }
+			if (itemStats.state == ItemState.DECAYING) {
+				timeUntilDecay -= Time.deltaTime;
+				if (timeUntilDecay <= 0) {
+					Destroy(gameObject);
+				}
+			}
+		}
 
-    protected virtual void ApplyCollectable(GameObject player) { }
+		protected virtual void OnItemStateChanged() { }
 
+		protected abstract void ApplyCollectable(PlayerComponent player);
 
-    public void Collect(GameObject player) {
-        ApplyCollectable(player);
-        onCollected.Invoke();
-    }
+		private void OnTriggerEnter(Collider other) {
+			
+
+			PlayerComponent player;
+
+			if (other.gameObject.TryGetComponent(out player)) {
+				
+			Debug.Log("brah");
+				ApplyCollectable(player);
+				onCollected.Invoke();
+			}
+		}
+	}
 }

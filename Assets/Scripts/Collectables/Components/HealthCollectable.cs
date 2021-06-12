@@ -1,6 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Character;
 
-public class HealthCollectable : BaseItem { 
+namespace Collectables.Components {
+	public class HealthCollectable : BaseItem {
+		protected override void ApplyCollectable(PlayerComponent player) {
+			player.AddHealth();
+		}
+	}
 }
