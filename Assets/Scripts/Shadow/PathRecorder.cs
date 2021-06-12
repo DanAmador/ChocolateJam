@@ -4,7 +4,6 @@ using NaughtyAttributes;
 using UnityEngine;
 
 namespace Shadow {
-	[RequireComponent(typeof(ShadowPath))]
 	public class PathRecorder : MonoBehaviour {
 		public ShadowPath shadowPath;
 
