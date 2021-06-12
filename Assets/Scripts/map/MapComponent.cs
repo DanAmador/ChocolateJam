@@ -15,13 +15,14 @@ public class MapComponent : MonoBehaviour
     }
     public List<Prop> propSettings;
     public Bounds mapBounds;
+    public Gradient mapColorGradient;
 
     private Transform props;
 
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
 
-    private void Awake() {
+    private void OnEnable() {
         Init();
     }
 
@@ -32,7 +33,78 @@ public class MapComponent : MonoBehaviour
     }
 
     void Start() {
+        GenerateMap();
         SpawnProps();
+    }
+
+    public void DrawMap(Texture2D texture) {
+        meshRenderer.sharedMaterial.mainTexture = texture;
+    }
+
+    public void GenerateMap() {
+        Texture2D terrainTexture = GenerateTerrainTexture();
+        DrawMap(terrainTexture);
+    }
+
+    public void TransformUVtoWorld(float u, float v, ref Vector3 p) {
+        p = transform.TransformPoint((u - 0.5f) * mapBounds.size.x, 0, (v - 0.5f) * mapBounds.size.z);
+    }
+
+    private float Ridgef(float h) {
+        h = UnityEngine.Random.Range(-10f, 10f) - Mathf.Abs(h);
+        return (h * h);
+    }
+
+    public float GetValueAtPositionWithRMFNoise(float x, float y) {
+        float sum = 0.0f;
+        float max = 0.0f;
+        float prev = 1.0f;
+        float amplitude = 0.5f;
+        float maxo = Mathf.Max(Ridgef(0.0f), Ridgef(1.0f));
+        float f = UnityEngine.Random.Range(0f, 10f);
+        x = x + UnityEngine.Random.Range(0, 100);
+        y = y + UnityEngine.Random.Range(0, 100);
+
+        int octaves = 4;
+        for (int i = 0; i < octaves; i++) {
+
+            float n = Ridgef(Mathf.PerlinNoise(x * f, y * f) - 0.5f);
+            float multiplier = amplitude * prev;
+            sum += n * multiplier;
+            max += maxo * multiplier;
+            prev = n;
+            f *= UnityEngine.Random.Range(1f, 5f);
+            amplitude *= UnityEngine.Random.Range(0f, 2f);
+        }
+        return (2.0f * sum / max) - 1.0f;
+    }
+
+    public Texture2D GenerateTerrainTexture() {
+        Texture2D mapTexture = new Texture2D(256, 265);
+        mapTexture.name = "MapTexture";
+        mapTexture.wrapMode = TextureWrapMode.Repeat;
+
+        Color color = new Color();
+
+        Vector3 p = new Vector3(0, 0, 0);
+        float u, v;
+        float invh = 1.0f / mapTexture.height;
+        float invw = 1.0f / mapTexture.width;
+
+        for (int z = 0; z < mapTexture.height; z++) {
+            v = z * invh;
+
+            for (int x = 0; x < mapTexture.width; x++) {
+                u = x * invw;
+                TransformUVtoWorld(u, v, ref p);
+
+                color = mapColorGradient.Evaluate(GetValueAtPositionWithRMFNoise(u, v));
+                mapTexture.SetPixel(x, z, color);
+            }
+        }
+
+        mapTexture.Apply();
+        return mapTexture;
     }
 
     private void SpawnProps() {
