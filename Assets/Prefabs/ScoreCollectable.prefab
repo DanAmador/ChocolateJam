@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4000012015927304}
   - component: {fileID: 114000013075131974}
   - component: {fileID: 7849627101976533709}
+  - component: {fileID: -400311598288364559}
   m_Layer: 0
-  m_Name: Diamondo
+  m_Name: ScoreCollectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,6 +79,19 @@ MonoBehaviour:
     age: 0
     state: 0
   timeUntilDecay: 0
+--- !u!65 &-400311598288364559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013931470818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.87, y: 3.31, z: 1.6}
+  m_Center: {x: 0, y: 1.57, z: 0}
 --- !u!1 &6469240506501040710
 GameObject:
   m_ObjectHideFlags: 0
