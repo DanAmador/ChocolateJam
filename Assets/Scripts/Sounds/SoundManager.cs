@@ -18,7 +18,8 @@ public class SoundManager : MonoBehaviour
         BUTTON = 0,
         POWERUP = 1,
         HEALTHUP = 2,
-        SHADOWCOLLISION = 3
+        SHADOWCOLLISION = 3,
+        JUMPPAD = 4
     }
 
     [SerializeField]
@@ -29,6 +30,8 @@ public class SoundManager : MonoBehaviour
     AudioClip healthUp;
     [SerializeField]
     AudioClip shadowCollision;
+    [SerializeField]
+    AudioClip jumpPad;
 
     [SerializeField]
     private AudioClip menuMusic;
@@ -52,7 +55,7 @@ public class SoundManager : MonoBehaviour
         source.maxDistance = 50000000000000;
         source.dopplerLevel = 0;
 
-        clips = new AudioClip[] { button, powerUp, healthUp, shadowCollision };
+        clips = new AudioClip[] { button, powerUp, healthUp, shadowCollision, jumpPad };
 
         source.clip = menuMusic;
         //source.PlayOneShot(menuMusic);

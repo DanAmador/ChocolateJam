@@ -4,6 +4,7 @@ using Cinemachine;
 using NaughtyAttributes;
 using Shadow;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Character {
 	[RequireComponent(typeof(PathRecorder))]
@@ -25,7 +26,7 @@ namespace Character {
 		public float SpeedWithBoost => _currentSpeed + (isBoosting ? boostSpeed : 0) * maxSpeed;
 
 		public bool CanBoost => NormalizedSpecial > 0.1f;
-
+		public UnityEvent onDieEvent = new UnityEvent();
 		[SerializeField] private CinemachineVirtualCamera _camera;
 
 		public float maxFov, defaultFov, fovInterpolation;
@@ -77,8 +78,13 @@ namespace Character {
 			_pr.StartRecording();
 		}
 
-		public void AddHealth() {
-			health = Mathf.Clamp(++health, 0, 3);
+		public void ChangeHealth(int amount) {
+			if (amount < 0 ) {
+				CinemachineShake.Instance.ShakeCamera(4,.1f);
+			}
+			health = Mathf.Clamp(amount + health, 0, 3);
+
+			if (health == 0) onDieEvent.Invoke();
 		}
 
 		public void AddSpeed(float val) {
