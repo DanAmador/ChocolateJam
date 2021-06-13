@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4665344885829928}
   - component: {fileID: 33890463986322008}
   - component: {fileID: 23663355965691776}
+  - component: {fileID: 9147865477321427536}
   m_Layer: 0
   m_Name: SNature_StickBlack
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9147865477321427536
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326781941874506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75493395, y: 3.916663, z: 0.7574022}
+  m_Center: {x: 0.21447782, y: 1.2504846, z: 0.10517286}

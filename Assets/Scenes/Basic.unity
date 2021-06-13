@@ -322,36 +322,236 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
-      propertyPath: propSettings.Array.data[9].number
-      value: 5
+      propertyPath: propSettings.Array.size
+      value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[0].name
+      value: VegL1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[1].name
+      value: VegL2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[2].name
+      value: VegL3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[3].name
+      value: VegL4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[4].name
+      value: VegL5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[5].name
+      value: VegL6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[6].name
+      value: VegS1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[7].name
+      value: VegS2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[8].name
+      value: VegS2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].name
+      value: VegS3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[10].name
+      value: VegS4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[11].name
+      value: VegS5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[12].name
+      value: Grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[0].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 528bcfb2338ecb2418b75a2b59da9848, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[1].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: f119fa83f1038ac4b833f21a41cae9d1, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[2].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 963d66c7000d793448bc1424962886ab, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[3].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 50b92cf3f08f03745bbc74de550c2dc7, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[4].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 80322bf1c46281b42b1197ea37d48332, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[5].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[5].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 86873b3ddd4a1a548a9d25799c621b3d, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[6].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[6].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[7].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 9d1ed9c23e004e84e8283be2bdba967f, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[8].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: b247e1f98f261d648bafb713dd26be2a, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 2fe21ce46fd85014590e30e91e49aedc, type: 3}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[10].number
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
-      propertyPath: propSettings.Array.data[0].maxMapHeight
+      propertyPath: propSettings.Array.data[10].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 7f1e157661b079647ab480cf407206ce, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[11].number
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[11].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: 95a59a779c708744f9268e68ea353e42, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[12].number
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[12].prefab
+      value: 
+      objectReference: {fileID: 100002, guid: 79a4364fb85fe924a9ae2ad673bebdcf, type: 3}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[0].maxMapHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[1].maxMapHeight
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[2].maxMapHeight
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[3].maxMapHeight
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[4].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[4].minMapHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[5].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[5].minMapHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[6].maxMapHeight
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: propSettings.Array.data[7].maxMapHeight
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[8].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[8].minMapHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].minMapHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[10].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[10].minMapHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[11].maxMapHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[11].minMapHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230208, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_Name
