@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6850133691539941859}
   - component: {fileID: 6850133691539941858}
   - component: {fileID: 6850133691539941862}
-  - component: {fileID: 1225248681}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -105,95 +104,164 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6850133691539941857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e8abaed49faf894d9b83aad9d9b93db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   propSettings:
-  - name: StoneBig
-    prefab: {fileID: 1074482753184668, guid: e86571f2f1251004b98a744302eca0b1, type: 3}
-    number: 5
-  - name: StoneSmall
-    prefab: {fileID: 1452900892236000, guid: 571fddfa4a0c30543815e196fbf20d4b, type: 3}
-    number: 5
-  - name: SmallStones
-    prefab: {fileID: 1570446151874584, guid: 8bf68561aec61914b8418e72b44a57dd, type: 3}
-    number: 5
-  - name: Grass
-    prefab: {fileID: 1806273466138086, guid: 065211b13cf2c0b45a7ad739ba6e8cc2, type: 3}
-    number: 10
-  - name: StoneBigMoss
-    prefab: {fileID: 1468190808596880, guid: 55ffe20335c698d4fbf469301e953712, type: 3}
-    number: 5
-  - name: StoneSmallMoss
-    prefab: {fileID: 1731474200146382, guid: 68e8c0f1e23f3f74781154a91fcce3aa, type: 3}
-    number: 5
-  - name: MushroomRed
-    prefab: {fileID: 1293605270326194, guid: c72f3f8a9daab2442b7dd148c087d333, type: 3}
-    number: 5
-  - name: MushroomGreen
-    prefab: {fileID: 1401562401996744, guid: 08149d62d2ddb9e4293bf2bad1d446fc, type: 3}
-    number: 5
-  - name: PineRed
-    prefab: {fileID: 1051648788624220, guid: 6b14d45548d47914088fc51496a20a8e, type: 3}
-    number: 5
   - name: Tree
     prefab: {fileID: 1095773145228200, guid: fac5acd5ad489214781636c608a0c628, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
     number: 5
-  - name: StickBlack
-    prefab: {fileID: 1326781941874506, guid: f900edf8c5b608246b6a17324ef82ac0, type: 3}
-    number: 5
-  - name: StickRed
-    prefab: {fileID: 1042598324542122, guid: be267edc7fa1b284ca7ab194ee3d831e, type: 3}
-    number: 5
-  - name: PineGreen
-    prefab: {fileID: 198980, guid: 55ca4401075700d46a23ae8179a79579, type: 3}
-    number: 5
-  - name: PineGreenTall
-    prefab: {fileID: 184622, guid: c7bcf19bbfa57ed4ea9147dff66d5542, type: 3}
-    number: 5
-  - name: TreeGreen
-    prefab: {fileID: 117604, guid: 9469bb1d3aa88ca40aa4079e96a27f8e, type: 3}
-    number: 5
-  - name: TreeDead
-    prefab: {fileID: 160606, guid: 5c3cbac9d5eae3844a928d36e6dbd1a6, type: 3}
-    number: 5
+  - name: Pine
+    prefab: {fileID: 1051648788624220, guid: 6b14d45548d47914088fc51496a20a8e, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 7
+  - name: RockTall
+    prefab: {fileID: 1074482753184668, guid: e86571f2f1251004b98a744302eca0b1, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 4
+  - name: RockSmall
+    prefab: {fileID: 1452900892236000, guid: 571fddfa4a0c30543815e196fbf20d4b, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 6
+  - name: Grass
+    prefab: {fileID: 1806273466138086, guid: 065211b13cf2c0b45a7ad739ba6e8cc2, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 30
   - name: Leaf
     prefab: {fileID: 1671943395006712, guid: 8ae7718c33e89b042b204b36902c7745, type: 3}
-    number: 10
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 20
+  - name: StickBlack
+    prefab: {fileID: 1326781941874506, guid: f900edf8c5b608246b6a17324ef82ac0, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 8
+  - name: StickBrown
+    prefab: {fileID: 1042598324542122, guid: be267edc7fa1b284ca7ab194ee3d831e, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 5
+  - name: RockMossTall
+    prefab: {fileID: 1468190808596880, guid: 55ffe20335c698d4fbf469301e953712, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 5
+  - name: RockMossSmall
+    prefab: {fileID: 1731474200146382, guid: 68e8c0f1e23f3f74781154a91fcce3aa, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 9
+  - name: Mushroom
+    prefab: {fileID: 1293605270326194, guid: c72f3f8a9daab2442b7dd148c087d333, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 8
+  - name: SmallRocks
+    prefab: {fileID: 1570446151874584, guid: 8bf68561aec61914b8418e72b44a57dd, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 20
   mapBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
---- !u!114 &1225248681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6850133691539941857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 3fbf1a2853c327e428ee8b2a03c6a267, type: 2}
+    m_Center: {x: 0, y: 1.5850049, z: 0}
+    m_Extent: {x: 32, y: 1.5850049, z: 32}
+  autoUpdate: 1
+  mapSettings:
+    mapWidth: 10
+    mapHeight: 10
+    tesselation: 64
+    size: 64
+    mapColorGradient:
+      serializedVersion: 2
+      key0: {r: 0.6698113, g: 0.50248, b: 0.41389284, a: 1}
+      key1: {r: 0.6698113, g: 0.52624726, b: 0.4518067, a: 1}
+      key2: {r: 0.5660378, g: 0.3931123, b: 0.30170882, a: 0}
+      key3: {r: 0.34509805, g: 0.41960788, b: 0.24705884, a: 0}
+      key4: {r: 0.15445887, g: 0.3679245, b: 0.18521239, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 7455
+      ctime2: 23088
+      ctime3: 27777
+      ctime4: 65535
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 5
+      m_NumAlphaKeys: 2
+    meshHeightMultiplier: 5
+    meshHeightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2.097074
+        outSlope: 2.097074
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.2854802
+      - serializedVersion: 3
+        time: 0.38422346
+        value: 0.2723534
+        inSlope: 3.4082713
+        outSlope: 3.4082713
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09991615
+        outWeight: 0.1906803
+      - serializedVersion: 3
+        time: 0.865741
+        value: 0.58687925
+        inSlope: 2.5435164
+        outSlope: 2.5435164
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9750061
+        value: 0.6070099
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    noiseThreshhold: 0
+    offsetSeed: 12
+    octaves: 4
+    fixedOffsetX: 0
+    fixedOffsetY: 0
+    scale: 15
+    persistance: 0.1
+    lacunarity: 8
+    frequency: 1.74
+    ridgeOffset: 0
+    gain: 0
 --- !u!1 &6850133692231230208
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,9 +271,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6850133692231230209}
+  - component: {fileID: 6850133692231230210}
   - component: {fileID: 919476593}
-  - component: {fileID: 2109853539}
-  - component: {fileID: 2109853538}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -228,6 +295,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6850133692231230210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850133692231230208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ba92925e2e5264f872c37857c4830b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 6850133691539941862}
+  gameSettings: {fileID: 11400000, guid: 58a4dc08425bd9f49aa1b870fafd7e9a, type: 2}
 --- !u!114 &919476593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recycleBinCollection:
   - prefab: {fileID: 4250482891988014596, guid: 0e3b433267fd04948a70825633ee9949, type: 3}
-    instancesToPreallocate: 100
+    instancesToPreallocate: 50
     instancesToAllocateIfEmpty: 10
     imposeHardLimit: 0
     hardLimit: 5
@@ -281,44 +362,6 @@ MonoBehaviour:
     cullInterval: 10
     automaticallyRecycleParticleSystems: 0
     persistBetweenScenes: 0
-  - prefab: {fileID: 7214834291900795294, guid: 318c2d2d669dc5f4aba889153970c1e9, type: 3}
-    instancesToPreallocate: 5
-    instancesToAllocateIfEmpty: 1
-    imposeHardLimit: 0
-    hardLimit: 5
-    cullExcessPrefabs: 0
-    instancesToMaintainInPool: 5
-    cullInterval: 10
-    automaticallyRecycleParticleSystems: 0
-    persistBetweenScenes: 0
   cullExcessObjectsInterval: 10
   persistBetweenScenes: 0
   transform: {fileID: 0}
---- !u!114 &2109853539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6850133692231230208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ba92925e2e5264f872c37857c4830b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameSettings: {fileID: 11400000, guid: 58a4dc08425bd9f49aa1b870fafd7e9a, type: 2}
-  scorePrefab: {fileID: 1000013931470818, guid: 0692e4890fab6ed4ca47e7a63028fd8b, type: 3}
-  chaserPrefab: {fileID: 7214834291900795294, guid: 318c2d2d669dc5f4aba889153970c1e9, type: 3}
---- !u!114 &2109853538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6850133692231230208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 802104eb5aa04392b83574fe5d163e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToSpawnChaser: 10
