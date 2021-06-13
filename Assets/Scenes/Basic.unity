@@ -229,11 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 1610187089}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057028390021, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_RootOrder
@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
@@ -320,6 +320,38 @@ PrefabInstance:
     - target: {fileID: 6850133691539941861, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[9].number
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[10].number
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[0].maxMapHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[1].maxMapHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[2].maxMapHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[3].maxMapHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[6].maxMapHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: propSettings.Array.data[7].maxMapHeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230208, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_Name

@@ -110,45 +110,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propSettings:
-  - name: VegL1
-    prefab: {fileID: 100000, guid: 528bcfb2338ecb2418b75a2b59da9848, type: 3}
-    number: 3
-  - name: VegL2
-    prefab: {fileID: 100000, guid: f119fa83f1038ac4b833f21a41cae9d1, type: 3}
-    number: 3
-  - name: VegL3
-    prefab: {fileID: 100000, guid: 963d66c7000d793448bc1424962886ab, type: 3}
-    number: 3
-  - name: VegL4
-    prefab: {fileID: 100000, guid: 50b92cf3f08f03745bbc74de550c2dc7, type: 3}
-    number: 3
-  - name: VegL5
-    prefab: {fileID: 100000, guid: 80322bf1c46281b42b1197ea37d48332, type: 3}
-    number: 3
-  - name: VegL6
-    prefab: {fileID: 100000, guid: 86873b3ddd4a1a548a9d25799c621b3d, type: 3}
-    number: 3
-  - name: VegS1
-    prefab: {fileID: 100000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
-    number: 3
-  - name: VegS2
-    prefab: {fileID: 100000, guid: 9d1ed9c23e004e84e8283be2bdba967f, type: 3}
-    number: 3
-  - name: VegS2
-    prefab: {fileID: 100000, guid: b247e1f98f261d648bafb713dd26be2a, type: 3}
-    number: 3
-  - name: VegS3
-    prefab: {fileID: 100000, guid: 2fe21ce46fd85014590e30e91e49aedc, type: 3}
-    number: 3
-  - name: VegS4
-    prefab: {fileID: 100000, guid: 7f1e157661b079647ab480cf407206ce, type: 3}
-    number: 3
-  - name: VegS5
-    prefab: {fileID: 100000, guid: 95a59a779c708744f9268e68ea353e42, type: 3}
-    number: 3
+  - name: Tree
+    prefab: {fileID: 1095773145228200, guid: fac5acd5ad489214781636c608a0c628, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 5
+  - name: Pine
+    prefab: {fileID: 1051648788624220, guid: 6b14d45548d47914088fc51496a20a8e, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 7
+  - name: RockTall
+    prefab: {fileID: 1074482753184668, guid: e86571f2f1251004b98a744302eca0b1, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 4
+  - name: RockSmall
+    prefab: {fileID: 1452900892236000, guid: 571fddfa4a0c30543815e196fbf20d4b, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 8
+  - name: StickBlack
+    prefab: {fileID: 1326781941874506, guid: f900edf8c5b608246b6a17324ef82ac0, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 6
+  - name: StickBrown
+    prefab: {fileID: 1042598324542122, guid: be267edc7fa1b284ca7ab194ee3d831e, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 6
+  - name: StickBrown
+    prefab: {fileID: 1671943395006712, guid: 8ae7718c33e89b042b204b36902c7745, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 20
+  - name: Grass
+    prefab: {fileID: 1806273466138086, guid: 065211b13cf2c0b45a7ad739ba6e8cc2, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 1
+    number: 30
+  - name: RocksSmall
+    prefab: {fileID: 1570446151874584, guid: 8bf68561aec61914b8418e72b44a57dd, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 12
+  - name: StoneMossTall
+    prefab: {fileID: 1468190808596880, guid: 55ffe20335c698d4fbf469301e953712, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 12
+  - name: StoneMossSmall
+    prefab: {fileID: 1731474200146382, guid: 68e8c0f1e23f3f74781154a91fcce3aa, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 12
+  - name: MushroomRed
+    prefab: {fileID: 1293605270326194, guid: c72f3f8a9daab2442b7dd148c087d333, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 12
+  - name: MushroomGreen
+    prefab: {fileID: 1401562401996744, guid: 08149d62d2ddb9e4293bf2bad1d446fc, type: 3}
+    minMapHeight: -0.1
+    maxMapHeight: 0.5
+    number: 12
   mapBounds:
-    m_Center: {x: 0, y: 2.4735215, z: 0}
-    m_Extent: {x: 32, y: 2.4735215, z: 32}
+    m_Center: {x: 0, y: 1.5850049, z: 0}
+    m_Extent: {x: 32, y: 1.5850049, z: 32}
   autoUpdate: 1
   mapSettings:
     mapWidth: 10
@@ -157,19 +186,19 @@ MonoBehaviour:
     size: 64
     mapColorGradient:
       serializedVersion: 2
-      key0: {r: 0.6981132, g: 0.42849302, b: 0.2799039, a: 1}
-      key1: {r: 0.4224813, g: 0.8867924, b: 0.49182203, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.6698113, g: 0.50248, b: 0.41389284, a: 1}
+      key1: {r: 0.6698113, g: 0.52624726, b: 0.4518067, a: 1}
+      key2: {r: 0.5660378, g: 0.3931123, b: 0.30170882, a: 0}
+      key3: {r: 0.34509805, g: 0.41960788, b: 0.24705884, a: 0}
+      key4: {r: 0.15445887, g: 0.3679245, b: 0.18521239, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
+      ctime1: 7455
+      ctime2: 23088
+      ctime3: 27777
+      ctime4: 65535
       ctime5: 0
       ctime6: 0
       ctime7: 0
@@ -182,7 +211,7 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
+      m_NumColorKeys: 5
       m_NumAlphaKeys: 2
     meshHeightMultiplier: 5
     meshHeightCurve:
@@ -191,15 +220,33 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2.097074
+        outSlope: 2.097074
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.2854802
       - serializedVersion: 3
-        time: 1
-        value: 1
+        time: 0.38422346
+        value: 0.2723534
+        inSlope: 3.4082713
+        outSlope: 3.4082713
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09991615
+        outWeight: 0.1906803
+      - serializedVersion: 3
+        time: 0.865741
+        value: 0.58687925
+        inSlope: 2.5435164
+        outSlope: 2.5435164
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9750061
+        value: 0.6070099
         inSlope: 0
         outSlope: 0
         tangentMode: 0

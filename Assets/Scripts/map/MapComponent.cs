@@ -12,6 +12,7 @@ public class MapComponent : MonoBehaviour
         public string name;
         public GameObject prefab;
         public float minMapHeight;
+        public float maxMapHeight;
         public int number;
     }
     [SerializeField] private List<Prop> propSettings;
@@ -196,11 +197,14 @@ public class MapComponent : MonoBehaviour
         return new Vector3(x, 0, z);
     }
 
-    //public Vector3 GetPositionWithMinHeight(float minHeight) {
-    //    Vector3 randomPos = GetMeshPosition(GetRandomPosition());
-    //    float height = GetMeshHeight(randomPos);
-    //    return 
-    //}
+    public Vector3 GetPositionWithMinHeight(float minHeight, float maxHeight) {
+        Vector3 randomPos = GetMeshPosition(GetRandomPosition());
+        if (randomPos.y >= minHeight && randomPos.y <= maxHeight) {
+            return randomPos;
+        } else {
+            return GetPositionWithMinHeight(minHeight, maxHeight);
+        }
+    }
 
     private Mesh GenerateTerrainMesh() {
         Mesh mesh = meshFilter.sharedMesh;
@@ -289,7 +293,7 @@ public class MapComponent : MonoBehaviour
 
         foreach (Prop prop in propSettings) {
             for (int i = 0; i < prop.number; i++) {
-                Vector3 pos = GetMeshPosition(GetRandomPosition());
+                Vector3 pos = GetPositionWithMinHeight(prop.minMapHeight, prop.maxMapHeight);
                 Quaternion rot = new Quaternion();
                 rot.eulerAngles = new Vector3(0.0f, UnityEngine.Random.Range(0.0f, 360.0f), 0.0f);
 
