@@ -144,24 +144,6 @@ MonoBehaviour:
   cullExcessObjectsInterval: 10
   persistBetweenScenes: 0
   transform: {fileID: 0}
---- !u!114 &239590693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239590691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb38f2688891f574eb40b1830108efad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 8300000, guid: 8b6aba45337cab64cbae696349a8dadc, type: 3}
-  powerUp: {fileID: 8300000, guid: 7e1b7766687e64a489d4276e0ecc1216, type: 3}
-  healthUp: {fileID: 8300000, guid: b6e9c7466af4f314eae4834433fe506b, type: 3}
-  shadowCollision: {fileID: 0}
-  menuMusic: {fileID: 8300000, guid: 6fdc01bfe89f5104f8023d928494acb1, type: 3}
-  gameMusic: {fileID: 8300000, guid: d6170031b53d31a43bf74fbd6b436968, type: 3}
 --- !u!1001 &637413774
 PrefabInstance:
   m_ObjectHideFlags: 0

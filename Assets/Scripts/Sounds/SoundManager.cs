@@ -45,23 +45,30 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        instance = this;
         source = gameObject.AddComponent<AudioSource>();
         source.loop = true;
         source.spatialBlend = 0.0f;
+        source.maxDistance = 50000000000000;
+        source.dopplerLevel = 0;
 
         clips = new AudioClip[] { button, powerUp, healthUp, shadowCollision };
+
+        source.clip = menuMusic;
+        //source.PlayOneShot(menuMusic);
+        source.Play();
     }
 
     public void ChangeToMenuMusic()
     {
         StartCoroutine("BlendMusic", menuMusic);
+        
     }
 
     public void ChangeToGameMusic()
     {
         StartCoroutine("BlendMusic", gameMusic);
-        source.time = 0;
-        source.Play();
+  
     }
 
     private IEnumerator BlendMusic(AudioClip clip)
