@@ -1,5 +1,6 @@
 using System;
 using Character;
+using map;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,7 +23,7 @@ namespace Collectables {
 		public UnityEvent onCollected;
 
 		private MeshRenderer _mr;
-		protected GameManager _gm;
+		protected ObjectSpawner _gm;
 		private MapComponent _map;
 		[SerializeField, Expandable] protected CollectableProperties itemProperties;
 		[SerializeField] protected ItemStats itemStats;
@@ -39,11 +40,12 @@ namespace Collectables {
 			timeUntilDecay = float.MaxValue;
 		}
 
-		public void Init(MapComponent map, CollectableProperties itemProperties, GameManager gameManager) {
+		public void Init(MapComponent map, CollectableProperties itemProperties, ObjectSpawner objectSpawner) {
 			_map = map;
-			_gm = gameManager;
+			_gm = objectSpawner;
 			this.itemProperties = itemProperties;
 			_mr.enabled = true;
+			transform.localScale = Vector3.zero;
 
 			LeanTween.scale(gameObject, Vector3.one, .5f)
 				.setOnComplete(() => GetComponent<BoxCollider>().enabled = true);
@@ -84,7 +86,7 @@ namespace Collectables {
 
 
 		protected virtual void ApplyCollectable(PlayerComponent player) {
-			_gm.SpawnRandom();
+			_gm.SpawnRandomCollectable();
 		}
 
 		private void OnTriggerEnter(Collider other) {

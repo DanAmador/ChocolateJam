@@ -20,8 +20,4 @@ MonoBehaviour:
   - name: SpeedUp
     properties: {fileID: 11400000, guid: f18937cdb6549ad40bec95e5afe719a6, type: 2}
     prefab: {fileID: 1000010921973622, guid: 68e7bbfd3e6f6ba44b5623438878177b, type: 3}
-    number: 5
-  - name: Score
-    properties: {fileID: 11400000, guid: 3804eafe903718d47b0ab9e8a2664e55, type: 2}
-    prefab: {fileID: 1000013931470818, guid: 0692e4890fab6ed4ca47e7a63028fd8b, type: 3}
-    number: 2
+    number: 10

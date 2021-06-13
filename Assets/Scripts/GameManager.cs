@@ -1,53 +1,41 @@
+using System;
 using NaughtyAttributes;
 using Collectables;
+using map;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(ObjectSpawner))]
 public class GameManager : MonoBehaviour {
-	[SerializeField] private MapComponent map;
-	[SerializeField, Expandable] private GameSettings gameSettings;
-	private Transform _collectables;
 
-	private CollectableSpawn _score;
+	private ObjectSpawner _objectSpawner;
 
+
+	public float timeToSpawnChaser = 20;
+
+	private float _lastChaserSpawn;
+	public float TimeSinceLastChaser => Time.time - _lastChaserSpawn;
+	private NavMeshSurface _surface;
 	void Awake() {
-		_collectables = Instantiate(new GameObject("Collectables")).transform;
-		SpawnCollectables();
+		_objectSpawner = GetComponent<ObjectSpawner>();
+		_lastChaserSpawn = Time.time;
 	}
 
-	private void SpawnCollectables() {
-		foreach (CollectableSpawn collectableSpawn in gameSettings.collectableSpawnSettings) {
-			if (collectableSpawn.name == "Score") {
-				_score = collectableSpawn;
-			}
-
-			for (int i = 0; i < collectableSpawn.number; i++) {
-				Spawn(collectableSpawn);
-			}
-		}
+	private void Start() {
+		_objectSpawner.SpawnChaser();
+		_surface = GetComponentInChildren<NavMeshSurface>();
+		_surface.BuildNavMesh();
+		//Sleep deprivation, fuck loops
+		_objectSpawner.SpawnScore();
+		_objectSpawner.SpawnScore();
+		_objectSpawner.SpawnScore();
+		_objectSpawner.SpawnScore();
 	}
 
-
-	public void SpawnScore() {
-		Spawn(_score);
-	}
-
-	public void SpawnRandom() {
-		int idx = Random.Range(0, gameSettings.collectableSpawnSettings.Count);
-		Spawn(gameSettings.collectableSpawnSettings[idx]);
-	}
-
-	private void Spawn(CollectableSpawn collectableSpawn) {
-		Vector3 pos = map.GetRandomPosition();
-		Quaternion rot = new Quaternion();
-		rot.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-		BaseItem v = TrashMan.spawn(collectableSpawn.prefab).GetComponent<BaseItem>();
-		Transform t = v.transform;
-		t.parent = _collectables.transform;
-		t.position = pos;
-		t.rotation = rot;
-		v.name = collectableSpawn.prefab.name;
-		t.localScale = Vector3.zero;
-		
-		v.Init(map, collectableSpawn.properties, this);
+	public void Update() {
+		if (TimeSinceLastChaser > timeToSpawnChaser) {
+			_lastChaserSpawn = Time.time;
+			_objectSpawner.SpawnChaser();
+		}	
 	}
 }
