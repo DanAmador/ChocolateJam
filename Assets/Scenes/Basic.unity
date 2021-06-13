@@ -229,11 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 1610187089}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057028390021, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_RootOrder
@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
@@ -325,7 +325,7 @@ MonoBehaviour:
   button: {fileID: 8300000, guid: 8b6aba45337cab64cbae696349a8dadc, type: 3}
   powerUp: {fileID: 8300000, guid: 7e1b7766687e64a489d4276e0ecc1216, type: 3}
   healthUp: {fileID: 8300000, guid: b6e9c7466af4f314eae4834433fe506b, type: 3}
-  shadowCollision: {fileID: 0}
+  shadowCollision: {fileID: 8300000, guid: f42af8eb70a3c1f43a3458a19cc82e4c, type: 3}
   menuMusic: {fileID: 8300000, guid: 6fdc01bfe89f5104f8023d928494acb1, type: 3}
   gameMusic: {fileID: 8300000, guid: d6170031b53d31a43bf74fbd6b436968, type: 3}
 --- !u!4 &1269939309
