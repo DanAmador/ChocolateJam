@@ -11,6 +11,7 @@ public class MapComponent : MonoBehaviour
     {
         public string name;
         public GameObject prefab;
+        public float minMapHeight;
         public int number;
     }
     [SerializeField] private List<Prop> propSettings;
@@ -189,6 +190,18 @@ public class MapComponent : MonoBehaviour
         return height;
     }
 
+    public Vector3 GetRandomPosition() {
+        float x = UnityEngine.Random.Range(mapBounds.min.x, mapBounds.max.x);
+        float z = UnityEngine.Random.Range(mapBounds.min.z, mapBounds.max.z);
+        return new Vector3(x, 0, z);
+    }
+
+    //public Vector3 GetPositionWithMinHeight(float minHeight) {
+    //    Vector3 randomPos = GetMeshPosition(GetRandomPosition());
+    //    float height = GetMeshHeight(randomPos);
+    //    return 
+    //}
+
     private Mesh GenerateTerrainMesh() {
         Mesh mesh = meshFilter.sharedMesh;
         Vector3[] vertices = mesh.vertices;
@@ -285,11 +298,5 @@ public class MapComponent : MonoBehaviour
                 v.name = prop.name + "." + i;
             }
         }
-    }
-
-    public Vector3 GetRandomPosition() {
-        float x = UnityEngine.Random.Range(mapBounds.min.x, mapBounds.max.x);
-        float z = UnityEngine.Random.Range(mapBounds.min.z, mapBounds.max.z);
-        return new Vector3(x, 0, z);
     }
 }
