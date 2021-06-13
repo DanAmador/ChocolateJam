@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc786155fa0db9e429860c25fac4e231, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  collectableSpawnSettings:
+  - name: HealthUp
+    properties: {fileID: 11400000, guid: f32c1d579e6ac004da875fea87e752c9, type: 2}
+    prefab: {fileID: 8668418811954132635, guid: 40ba795b7e195ef4e934a4808c60a791, type: 3}
+    number: 5
+  - name: SpeedUp
+    properties: {fileID: 11400000, guid: f18937cdb6549ad40bec95e5afe719a6, type: 2}
+    prefab: {fileID: 2736548046531158461, guid: 68e7bbfd3e6f6ba44b5623438878177b, type: 3}
+    number: 5
+  - name: Score
+    properties: {fileID: 11400000, guid: 3804eafe903718d47b0ab9e8a2664e55, type: 2}
+    prefab: {fileID: 7849627101976533709, guid: 0692e4890fab6ed4ca47e7a63028fd8b, type: 3}
+    number: 2
