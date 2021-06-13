@@ -113,68 +113,63 @@ MonoBehaviour:
   - name: Tree
     prefab: {fileID: 1095773145228200, guid: fac5acd5ad489214781636c608a0c628, type: 3}
     minMapHeight: 0.5
-    maxMapHeight: 1
+    maxMapHeight: 3
     number: 5
   - name: Pine
     prefab: {fileID: 1051648788624220, guid: 6b14d45548d47914088fc51496a20a8e, type: 3}
     minMapHeight: 0.5
-    maxMapHeight: 1
+    maxMapHeight: 3
     number: 7
   - name: RockTall
     prefab: {fileID: 1074482753184668, guid: e86571f2f1251004b98a744302eca0b1, type: 3}
     minMapHeight: 0.5
-    maxMapHeight: 1
+    maxMapHeight: 3
     number: 4
   - name: RockSmall
     prefab: {fileID: 1452900892236000, guid: 571fddfa4a0c30543815e196fbf20d4b, type: 3}
     minMapHeight: 0.5
-    maxMapHeight: 1
-    number: 8
-  - name: StickBlack
-    prefab: {fileID: 1326781941874506, guid: f900edf8c5b608246b6a17324ef82ac0, type: 3}
-    minMapHeight: -0.1
-    maxMapHeight: 0.5
+    maxMapHeight: 3
     number: 6
-  - name: StickBrown
-    prefab: {fileID: 1042598324542122, guid: be267edc7fa1b284ca7ab194ee3d831e, type: 3}
-    minMapHeight: -0.1
-    maxMapHeight: 0.5
-    number: 6
-  - name: StickBrown
-    prefab: {fileID: 1671943395006712, guid: 8ae7718c33e89b042b204b36902c7745, type: 3}
-    minMapHeight: 0.5
-    maxMapHeight: 1
-    number: 20
   - name: Grass
     prefab: {fileID: 1806273466138086, guid: 065211b13cf2c0b45a7ad739ba6e8cc2, type: 3}
     minMapHeight: 0.5
-    maxMapHeight: 1
+    maxMapHeight: 3
     number: 30
-  - name: RocksSmall
-    prefab: {fileID: 1570446151874584, guid: 8bf68561aec61914b8418e72b44a57dd, type: 3}
-    minMapHeight: -0.1
+  - name: Leaf
+    prefab: {fileID: 1671943395006712, guid: 8ae7718c33e89b042b204b36902c7745, type: 3}
+    minMapHeight: 0.5
+    maxMapHeight: 3
+    number: 20
+  - name: StickBlack
+    prefab: {fileID: 1326781941874506, guid: f900edf8c5b608246b6a17324ef82ac0, type: 3}
+    minMapHeight: 0
     maxMapHeight: 0.5
-    number: 12
-  - name: StoneMossTall
+    number: 8
+  - name: StickBrown
+    prefab: {fileID: 1042598324542122, guid: be267edc7fa1b284ca7ab194ee3d831e, type: 3}
+    minMapHeight: 0
+    maxMapHeight: 0.5
+    number: 5
+  - name: RockMossTall
     prefab: {fileID: 1468190808596880, guid: 55ffe20335c698d4fbf469301e953712, type: 3}
-    minMapHeight: -0.1
+    minMapHeight: 0
     maxMapHeight: 0.5
-    number: 12
-  - name: StoneMossSmall
+    number: 5
+  - name: RockMossSmall
     prefab: {fileID: 1731474200146382, guid: 68e8c0f1e23f3f74781154a91fcce3aa, type: 3}
-    minMapHeight: -0.1
+    minMapHeight: 0
     maxMapHeight: 0.5
-    number: 12
-  - name: MushroomRed
+    number: 9
+  - name: Mushroom
     prefab: {fileID: 1293605270326194, guid: c72f3f8a9daab2442b7dd148c087d333, type: 3}
-    minMapHeight: -0.1
+    minMapHeight: 0
     maxMapHeight: 0.5
-    number: 12
-  - name: MushroomGreen
-    prefab: {fileID: 1401562401996744, guid: 08149d62d2ddb9e4293bf2bad1d446fc, type: 3}
-    minMapHeight: -0.1
+    number: 8
+  - name: SmallRocks
+    prefab: {fileID: 1570446151874584, guid: 8bf68561aec61914b8418e72b44a57dd, type: 3}
+    minMapHeight: 0
     maxMapHeight: 0.5
-    number: 12
+    number: 20
   mapBounds:
     m_Center: {x: 0, y: 1.5850049, z: 0}
     m_Extent: {x: 32, y: 1.5850049, z: 32}
