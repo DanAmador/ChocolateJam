@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Shadow;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ namespace Character {
 		public bool IsMovementPressed => _currentMovement.x != 0 || _currentMovement.y != 0;
 		private Vector3 _moveVector;
 
+		#region Unity Lifecycle
 
 		private void Awake() {
 			_pc = GetComponent<PlayerComponent>();
@@ -28,6 +30,31 @@ namespace Character {
 			// _playerInput.CharacterController.Spawn.started += OnSpawnInput;
 			// _playerInput.CharacterController.Spawn.canceled += OnSpawnInput;
 			_playerInput.CharacterController.Spawn.performed += OnSpawnInput;
+
+			_playerInput.CharacterController.Boost.started += OnBoostInput;
+			_playerInput.CharacterController.Boost.canceled += OnBoostInput;
+		}
+
+		private void Update() {
+			_characterController.Move((_characterController.isGrounded ? Vector3.zero : Physics.gravity) +
+			                          _currentMovement * (Time.deltaTime * _pc.SpeedWithBoost));
+		}
+
+		private void OnEnable() {
+			_playerInput.CharacterController.Enable();
+		}
+
+		private void OnDisable() {
+			_playerInput.CharacterController.Disable();
+		}
+
+		#endregion
+
+		#region Input callbacks
+
+		void OnBoostInput(InputAction.CallbackContext ctx) {
+			_pc.isBoosting = ctx.ReadValueAsButton();
+
 		}
 
 		void OnSpawnInput(InputAction.CallbackContext ctx) {
@@ -42,17 +69,8 @@ namespace Character {
 			_currentMovement.z = _currentMovementInput.y;
 		}
 
-		private void Update() {
-			_characterController.Move((_characterController.isGrounded ? Vector3.zero : Physics.gravity) +
-			                          _currentMovement * (Time.deltaTime * _pc.speed));
-		}
+		#endregion
 
-		private void OnEnable() {
-			_playerInput.CharacterController.Enable();
-		}
 
-		private void OnDisable() {
-			_playerInput.CharacterController.Disable();
-		}
 	}
 }

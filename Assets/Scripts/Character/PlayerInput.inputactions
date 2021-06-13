@@ -18,7 +18,15 @@
                     "type": "Value",
                     "id": "6be88630-e321-4473-813d-fea9e0d4cf06",
                     "expectedControlType": "Button",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Boost",
+                    "type": "Value",
+                    "id": "f10f0906-7d3c-4dfa-987c-149aa8d989be",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": ""
                 }
             ],
@@ -108,6 +116,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Spawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d6a641c-6efb-490b-ac95-36cefd372e46",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bafc7dc7-eee9-473d-be3a-e651bc2ae4b5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boost",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
