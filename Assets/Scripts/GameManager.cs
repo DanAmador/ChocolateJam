@@ -25,11 +25,7 @@ public class GameManager : MonoBehaviour {
 		_objectSpawner.SpawnChaser();
 		_surface = GetComponentInChildren<NavMeshSurface>();
 		_surface.BuildNavMesh();
-		//Sleep deprivation, fuck loops
-		_objectSpawner.SpawnScore();
-		_objectSpawner.SpawnScore();
-		_objectSpawner.SpawnScore();
-		_objectSpawner.SpawnScore();
+
 	}
 
 	public void Update() {

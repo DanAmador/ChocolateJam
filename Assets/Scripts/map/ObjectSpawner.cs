@@ -33,8 +33,14 @@ namespace map {
 					Spawn(collectableSpawn);
 				}
 			}
-		}
 
+			//Sleep deprivation, fuck loops
+			SpawnScore();
+			SpawnScore();
+			SpawnScore();
+			SpawnScore();
+
+		}
 
 		public void SpawnScore() {
 			Spawn(_scoreCollectable);

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4250482891988014601
 Transform:
   m_ObjectHideFlags: 0
@@ -71,11 +71,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFollow: {fileID: 4250482891988014598}
+  child: {fileID: 0}
+  refreshRate: 10
+  lastCollisionTime: 0
+  shadowPrefab: {fileID: 4250482891988014596}
   parent1: {fileID: 0}
   parent2: {fileID: 0}
-  shadowPrefab: {fileID: 4250482891988014596}
-  refreshRate: 10
-  collisionLayer: 6
+  speed: 5
+  recursionDepth: 1
 --- !u!96 &6337352322716055574
 TrailRenderer:
   serializedVersion: 2
