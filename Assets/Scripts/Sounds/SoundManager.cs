@@ -22,13 +22,13 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField]
-    static AudioClip button;
+    AudioClip button;
     [SerializeField]
-    static AudioClip powerUp;
+    AudioClip powerUp;
     [SerializeField]
-    static AudioClip healthUp;
+    AudioClip healthUp;
     [SerializeField]
-    static AudioClip shadowCollision;
+    AudioClip shadowCollision;
 
     [SerializeField]
     private AudioClip menuMusic;
@@ -36,9 +36,9 @@ public class SoundManager : MonoBehaviour
     private AudioClip gameMusic;
 
 
-    private static AudioClip[] clips = new AudioClip[] { button, powerUp, healthUp, shadowCollision };
+    private AudioClip[] clips;
 
-    public static void PlaySound(Sounds sound, Vector3 position)
+    public void PlaySound(Sounds sound, Vector3 position)
     {
         AudioSource.PlayClipAtPoint(clips[(int)sound], position);
     }
@@ -48,6 +48,8 @@ public class SoundManager : MonoBehaviour
         source = gameObject.AddComponent<AudioSource>();
         source.loop = true;
         source.spatialBlend = 0.0f;
+
+        clips = new AudioClip[] { button, powerUp, healthUp, shadowCollision };
     }
 
     public void ChangeToMenuMusic()
