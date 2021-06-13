@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using NaughtyAttributes;
 using Shadow;
 using UnityEngine;
 
 namespace Character {
-	[RequireComponent(typeof(PathRecorder), typeof(LineRenderer))]
+	[RequireComponent(typeof(PathRecorder))]
 	public class PlayerComponent : MonoBehaviour {
 		private float _currentSpeed;
 		public int health;
@@ -20,17 +21,20 @@ namespace Character {
 		[Range(.5f, 1f)] public float boostSpeed;
 
 		public bool isBoosting;
-
 		public float NormalizedSpecial => _currentSpecial / _maxSpecial;
 		public float SpeedWithBoost => _currentSpeed + (isBoosting ? boostSpeed : 0) * maxSpeed;
 
 		public bool CanBoost => NormalizedSpecial > 0.1f;
 
-		private TrailRenderer _tr;
+		[SerializeField] private CinemachineVirtualCamera _camera;
+
+		public float maxFov, defaultFov, fovInterpolation;
+		[SerializeField] private ParticleManager particleManager;
 
 		private void Awake() {
 			_pr = GetComponent<PathRecorder>();
-			_tr = GetComponent<TrailRenderer>();
+			fovInterpolation = 0;
+			defaultFov = _camera.m_Lens.FieldOfView;
 		}
 
 		private void Start() {
@@ -45,7 +49,6 @@ namespace Character {
 		private void Update() {
 			// Debug.Log(NormalizedSpecial);
 			BoostCheck();
-			
 		}
 
 		public void BoostCheck() {
@@ -54,8 +57,12 @@ namespace Character {
 				isBoosting = CanBoost;
 			}
 
-			_tr.emitting = isBoosting;
-			
+
+			_camera.m_Lens.FieldOfView = Mathf.Lerp(defaultFov, maxFov, fovInterpolation);
+			fovInterpolation = Mathf.Clamp01(fovInterpolation + (isBoosting ? Time.deltaTime : -Time.deltaTime));
+
+			particleManager.SetTrail(isBoosting);
+
 			_currentSpecial = Mathf.Clamp(_currentSpecial + .3f * Time.deltaTime, 0, _maxSpecial);
 		}
 
