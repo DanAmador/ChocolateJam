@@ -85,7 +85,7 @@ public class MapComponent : MonoBehaviour
         Init();
         Mesh mesh = GenerateTerrainMesh();
         Texture2D texture = GenerateTerrainTexture();
-        Tesselate();
+        // Tesselate();
         DrawMap(texture, mesh);
     }
 
