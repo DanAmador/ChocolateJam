@@ -1,33 +1,53 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using Collectables;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 	[SerializeField] private MapComponent map;
 	[SerializeField, Expandable] private GameSettings gameSettings;
-	private Transform collectables;
+	private Transform _collectables;
 
-	void Start() {
+	private CollectableSpawn _score;
+
+	void Awake() {
+		_collectables = Instantiate(new GameObject("Collectables")).transform;
 		SpawnCollectables();
 	}
 
 	private void SpawnCollectables() {
-		collectables = Instantiate(new GameObject("collectables")).transform;
-
 		foreach (CollectableSpawn collectableSpawn in gameSettings.collectableSpawnSettings) {
-			for (int i = 0; i < collectableSpawn.number; i++) {
-				Vector3 pos = map.GetRandomPosition();
-				Quaternion rot = new Quaternion();
-				rot.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
+			if (collectableSpawn.name == "Score") {
+				_score = collectableSpawn;
+			}
 
-				BaseItem v = Instantiate(collectableSpawn.prefab, pos, rot).GetComponent<BaseItem>();
-				v.transform.parent = collectables.transform;
-				v.name = collectableSpawn.name + "." + i;
-				v.Init(map, collectableSpawn.properties);
+			for (int i = 0; i < collectableSpawn.number; i++) {
+				Spawn(collectableSpawn);
 			}
 		}
+	}
+
+
+	public void SpawnScore() {
+		Spawn(_score);
+	}
+
+	public void SpawnRandom() {
+		int idx = Random.Range(0, gameSettings.collectableSpawnSettings.Count);
+		Spawn(gameSettings.collectableSpawnSettings[idx]);
+	}
+
+	private void Spawn(CollectableSpawn collectableSpawn) {
+		Vector3 pos = map.GetRandomPosition();
+		Quaternion rot = new Quaternion();
+		rot.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
+		BaseItem v = TrashMan.spawn(collectableSpawn.prefab).GetComponent<BaseItem>();
+		Transform t = v.transform;
+		t.parent = _collectables.transform;
+		t.position = pos;
+		t.rotation = rot;
+		v.name = collectableSpawn.prefab.name;
+		t.localScale = Vector3.zero;
+		
+		v.Init(map, collectableSpawn.properties, this);
 	}
 }

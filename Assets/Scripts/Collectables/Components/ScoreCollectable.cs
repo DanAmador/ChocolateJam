@@ -5,6 +5,7 @@ namespace Collectables.Components {
 		protected override void ApplyCollectable(PlayerComponent player) {
 			//TODO add score
 			player.SpawnShadow();
+			_gm.SpawnScore();
 		}
 	}
 }

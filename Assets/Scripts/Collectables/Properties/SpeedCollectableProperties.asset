@@ -15,4 +15,4 @@ MonoBehaviour:
   maxLifetime: 100
   chanceOfDecay: 0.005
   durationOfDecay: 5
-  energy: 5
+  energy: 2

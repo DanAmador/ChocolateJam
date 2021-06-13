@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Shadow {
 	public class ShadowPath : MonoBehaviour {
@@ -11,17 +12,23 @@ namespace Shadow {
 
 		public LTDescr splineDescription;
 
+
+		public UnityEvent onCompoundPathLoop = new UnityEvent();
+
 		public Vector3[] RemainingOffsets() {
-			List<Vector3> remainingPoints = new List<Vector3>();
 			int currIdx = InterpolationToIndex(splineDescription.lastVal);
 			int modifier = (int) splineDescription.directionLast;
 			int endIdx = modifier > 0 ? _frames.Count - 1 : 0;
+			int difference = Mathf.Abs(currIdx - endIdx);
+			Vector3[] remainingPoints = new Vector3[difference];
+			int i = 0;
 			while (currIdx != endIdx) {
-				remainingPoints.Add(_frames[currIdx].moveDirection);
+				remainingPoints[i] = _frames[currIdx].moveDirection;
 				currIdx += modifier;
+				i++;
 			}
 
-			return remainingPoints.ToArray();
+			return remainingPoints;
 		}
 
 		public float RemainingTime() {
@@ -47,14 +54,30 @@ namespace Shadow {
 		}
 
 
-		public void ClosePath(float duration = 0) {
-			closed = true;
-			_endTime = Time.time;
-			duration = duration == 0 ? Duration : duration;
-			spline = new LTSpline(_frames.Select(frame => frame.position).ToArray());
-			splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
-				.setEase(LeanTweenType.linear)
-				.setLoopPingPong().setOrientToPath(true);
+		public bool ClosePath(float duration = 0, bool runTween = true) {
+			if (_frames.Count > 4) {
+				closed = true;
+				_endTime = Time.time;
+				duration = duration == 0 ? Duration : duration;
+				Vector3[] pts = new Vector3[_frames.Count];
+				int idx = 0;
+				foreach (PathDataFrame f in _frames) {
+					pts[idx] = f.position;
+					idx++;
+				}
+
+				spline = new LTSpline(pts);
+				if (runTween) {
+					splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
+						.setEase(LeanTweenType.linear)
+						.setLoopPingPong()
+						.setOrientToPath(true);
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 
 		void OnDrawGizmos() {
@@ -63,6 +86,7 @@ namespace Shadow {
 			}
 		}
 
+		//Used to calculate compound paths from multiple parents
 		public void UpdatePath(Vector3[] newOffsets, float duration) {
 			_frames.Clear();
 			Vector3 startPoint = transform.position;
@@ -71,7 +95,15 @@ namespace Shadow {
 				startPoint += offset;
 			}
 
-			ClosePath(duration);
+			_startTime = Time.time;
+			_endTime = duration + _startTime;
+			if (ClosePath(duration, false)) {
+				splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
+					.setEase(LeanTweenType.linear)
+					.setLoopPingPong(1)
+					.setOrientToPath(true)
+					.setOnComplete(onCompoundPathLoop.Invoke);
+			}
 		}
 
 		public void Reset() {
