@@ -16,6 +16,11 @@ public class Controller : MonoBehaviour {
 	}
 
 	void Update () {
+		if (Input.GetKey(KeyCode.Escape))
+        {
+			UnityEditor.EditorApplication.isPlaying = false;
+			Application.Quit();
+        }
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
