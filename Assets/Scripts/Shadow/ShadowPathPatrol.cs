@@ -25,6 +25,9 @@ namespace Shadow {
 		private ShadowPathPatrol _other;
 		private bool CanCollide => Time.time - lastCollisionTime > pathToFollow.Duration / 2f;
 
+		public float speed = 5;
+		public float recursionDepth = 1;
+
 		private void Start() {
 			pathToFollow = GetComponent<ShadowPath>();
 			_sphereCollider = GetComponent<SphereCollider>();
@@ -59,25 +62,30 @@ namespace Shadow {
 			}
 		}
 
-		private (Vector3[], float) CalculateParentsMix() {
+		private void CalculateParentsMix() {
 			Vector3[] remainingPoints1 = parent1.pathToFollow.RemainingOffsets();
 			Vector3[] remainingPoints2 = parent2.pathToFollow.RemainingOffsets();
 			float remainingTimeAvg = (parent1.pathToFollow.RemainingTime() + parent2.pathToFollow.RemainingTime()) / 2;
 			int amountOfElements = Math.Max(remainingPoints1.Length, remainingPoints2.Length);
 
 			Vector3[] newOffsets = new Vector3[amountOfElements];
+			float totalDistance = 0;
+			Vector3 offset;
 			for (int i = 0; i < amountOfElements; i++) {
-				newOffsets[i] = remainingPoints1.ElementAtOrDefault(i) + remainingPoints2.ElementAtOrDefault(i);
+				offset = remainingPoints1.ElementAtOrDefault(i) + remainingPoints2.ElementAtOrDefault(i);
+				totalDistance += offset.magnitude;
+				newOffsets[i] = offset;
 			}
 
-			return (newOffsets, remainingTimeAvg);
+			
+			float time = totalDistance / (speed * recursionDepth);
+			pathToFollow.UpdatePath(newOffsets, time);
 		}
 
 		[Button()]
 		public void UpdatePathFromParents() {
 			if (parent1 != null && parent2 != null) {
-				(Vector3[], float) remainingInfo = CalculateParentsMix();
-				pathToFollow.UpdatePath(remainingInfo.Item1, remainingInfo.Item2);
+				CalculateParentsMix();
 			}
 		}
 
@@ -92,6 +100,7 @@ namespace Shadow {
 				child = TrashMan.spawn(shadowPrefab).GetComponent<ShadowPathPatrol>();
 				child.parent1 = p1;
 				child.parent2 = p2;
+				child.recursionDepth = Mathf.CeilToInt((p1.recursionDepth + p2.recursionDepth) / 2) + 1;
 				child.transform.position = transformPosition;
 				child.UpdatePathFromParents();
 				p1.child = child;
@@ -114,13 +123,13 @@ namespace Shadow {
 
 //Callback for compound paths that reactivates the parents and flips the direction
 		public void ActivateAndFlip() {
-				ActivateAndFlip(parent2);
-				ActivateAndFlip(parent1);
-				parent1 = null;
-				parent2 = null;
+			ActivateAndFlip(parent2);
+			ActivateAndFlip(parent1);
+			parent1 = null;
+			parent2 = null;
 
-				gameObject.SetActive(false);
-				TrashMan.despawn(gameObject);
+			gameObject.SetActive(false);
+			TrashMan.despawn(gameObject);
 		}
 	}
 }

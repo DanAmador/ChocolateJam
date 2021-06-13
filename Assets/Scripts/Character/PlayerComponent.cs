@@ -80,5 +80,9 @@ namespace Character {
 		public void AddHealth() {
 			health = Mathf.Clamp(++health, 0, 3);
 		}
+
+		public void AddSpeed(float val) {
+			_currentSpecial = Mathf.Clamp(_currentSpecial + val, 0.1f, _maxSpecial);
+		}
 	}
 }

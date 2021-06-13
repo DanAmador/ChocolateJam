@@ -16,16 +16,19 @@ namespace Shadow {
 		public UnityEvent onCompoundPathLoop = new UnityEvent();
 
 		public Vector3[] RemainingOffsets() {
-			List<Vector3> remainingPoints = new List<Vector3>();
 			int currIdx = InterpolationToIndex(splineDescription.lastVal);
 			int modifier = (int) splineDescription.directionLast;
 			int endIdx = modifier > 0 ? _frames.Count - 1 : 0;
+			int difference = Mathf.Abs(currIdx - endIdx);
+			Vector3[] remainingPoints = new Vector3[difference];
+			int i = 0;
 			while (currIdx != endIdx) {
-				remainingPoints.Add(_frames[currIdx].moveDirection);
+				remainingPoints[i] = _frames[currIdx].moveDirection;
 				currIdx += modifier;
+				i++;
 			}
 
-			return remainingPoints.ToArray();
+			return remainingPoints;
 		}
 
 		public float RemainingTime() {
@@ -56,7 +59,14 @@ namespace Shadow {
 				closed = true;
 				_endTime = Time.time;
 				duration = duration == 0 ? Duration : duration;
-				spline = new LTSpline(_frames.Select(frame => frame.position).ToArray());
+				Vector3[] pts = new Vector3[_frames.Count];
+				int idx = 0;
+				foreach (PathDataFrame f in _frames) {
+					pts[idx] = f.position;
+					idx++;
+				}
+
+				spline = new LTSpline(pts);
 				if (runTween) {
 					splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
 						.setEase(LeanTweenType.linear)
@@ -85,7 +95,8 @@ namespace Shadow {
 				startPoint += offset;
 			}
 
-
+			_startTime = Time.time;
+			_endTime = duration + _startTime;
 			if (ClosePath(duration, false)) {
 				splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
 					.setEase(LeanTweenType.linear)

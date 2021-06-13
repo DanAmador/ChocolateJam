@@ -5,27 +5,33 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Collectables {
-	public abstract class BaseItem : MonoBehaviour {
+	[Serializable]
+	public struct ItemStats {
+		public float created;
+		public float age;
+		public ItemState state;
+	}
+
+	public enum ItemState {
+		PRISTINE,
+		DECAYING,
+	}
+
+	[RequireComponent(typeof(BoxCollider))]
+	public  class BaseItem : MonoBehaviour {
 		public UnityEvent onCollected;
 
-		private MapComponent map;
+		private MeshRenderer _mr;
+		protected GameManager _gm;
+		private MapComponent _map;
 		[SerializeField, Expandable] protected CollectableProperties itemProperties;
 		[SerializeField] protected ItemStats itemStats;
 
-		[Serializable]
-		public struct ItemStats {
-			public float created;
-			public float age;
-			public ItemState state;
-		}
-
-		public enum ItemState {
-			PRISTINE,
-			DECAYING,
-		}
 
 		private UnityEvent itemStateChanged;
 		[SerializeField] private float timeUntilDecay;
+
+		private ParticleSystem _pr;
 
 		void OnEnable() {
 			itemStats.created = Time.time / 60f;
@@ -33,14 +39,21 @@ namespace Collectables {
 			timeUntilDecay = float.MaxValue;
 		}
 
-		public virtual void Init(MapComponent map, CollectableProperties itemProperties) {
-			this.map = map;
+		public void Init(MapComponent map, CollectableProperties itemProperties, GameManager gameManager) {
+			_map = map;
+			_gm = gameManager;
 			this.itemProperties = itemProperties;
+			_mr.enabled = true;
+
+			LeanTween.scale(gameObject, Vector3.one, .5f)
+				.setOnComplete(() => GetComponent<BoxCollider>().enabled = true);
 		}
 
-		private void Start() {
+		private void Awake() {
+			_pr = GetComponent<ParticleSystem>();
+			_mr = GetComponentInChildren<MeshRenderer>();
+			_mr.enabled = true;
 			itemStateChanged = new UnityEvent();
-			itemStateChanged.AddListener(OnItemStateChanged);
 			onCollected = new UnityEvent();
 		}
 
@@ -55,7 +68,7 @@ namespace Collectables {
 			    (itemStats.age >= itemProperties.maxLifetime - itemProperties.durationOfDecay ||
 			     UnityEngine.Random.Range(0f, 1f) <= itemProperties.chanceOfDecay * Time.deltaTime ||
 			     (UnityEngine.Random.Range(0f, 1f) <=
-				     itemProperties.chanceOfDecay * Time.deltaTime * 2))) {
+			      itemProperties.chanceOfDecay * Time.deltaTime * 2))) {
 				itemStats.state = ItemState.DECAYING;
 				itemStateChanged.Invoke();
 				timeUntilDecay = itemProperties.durationOfDecay;
@@ -64,24 +77,24 @@ namespace Collectables {
 			if (itemStats.state == ItemState.DECAYING) {
 				timeUntilDecay -= Time.deltaTime;
 				if (timeUntilDecay <= 0) {
-					Destroy(gameObject);
+					TrashMan.despawn(gameObject);
 				}
 			}
 		}
 
-		protected virtual void OnItemStateChanged() { }
 
-		protected abstract void ApplyCollectable(PlayerComponent player);
+		protected virtual void ApplyCollectable(PlayerComponent player) {
+			_gm.SpawnRandom();
+		}
 
 		private void OnTriggerEnter(Collider other) {
-			
-
 			PlayerComponent player;
 
 			if (other.gameObject.TryGetComponent(out player)) {
-				
 				ApplyCollectable(player);
 				onCollected.Invoke();
+				_mr.enabled = false;
+				TrashMan.despawnAfterDelay(gameObject, .5f);
 			}
 		}
 	}

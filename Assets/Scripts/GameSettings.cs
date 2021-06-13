@@ -9,7 +9,7 @@ public struct CollectableSpawn
 {
     public string name;
     public CollectableProperties properties;
-    public BaseItem prefab;
+    public GameObject prefab;
     public int number;
 }
 
