@@ -80,7 +80,6 @@ namespace Collectables {
 
 			if (other.gameObject.TryGetComponent(out player)) {
 				
-			Debug.Log("brah");
 				ApplyCollectable(player);
 				onCollected.Invoke();
 			}

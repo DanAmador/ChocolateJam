@@ -1,4 +1,5 @@
 using System;
+using Shadow;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,20 +11,30 @@ namespace Character {
 		private Vector2 _currentMovementInput;
 		private Vector3 _currentMovement;
 
-		private PlayerComponent cm;
+		private PlayerComponent _pc;
 
 		public bool IsMovementPressed => _currentMovement.x != 0 || _currentMovement.y != 0;
+		private Vector3 _moveVector;
 
 
 		private void Awake() {
-			cm = GetComponent<PlayerComponent>();
+			_pc = GetComponent<PlayerComponent>();
 			_playerInput = new PlayerInput();
 			_characterController = GetComponent<CharacterController>();
 			_playerInput.CharacterController.Move.started += OnMovementInput;
 			_playerInput.CharacterController.Move.canceled += OnMovementInput;
 			_playerInput.CharacterController.Move.performed += OnMovementInput;
+
+			// _playerInput.CharacterController.Spawn.started += OnSpawnInput;
+			// _playerInput.CharacterController.Spawn.canceled += OnSpawnInput;
+			_playerInput.CharacterController.Spawn.performed += OnSpawnInput;
 		}
 
+		void OnSpawnInput(InputAction.CallbackContext ctx) {
+#if UNITY_EDITOR
+			_pc.SpawnShadow();
+#endif
+		}
 
 		void OnMovementInput(InputAction.CallbackContext ctx) {
 			_currentMovementInput = ctx.ReadValue<Vector2>();
@@ -32,7 +43,8 @@ namespace Character {
 		}
 
 		private void Update() {
-			_characterController.Move(_currentMovement * (Time.deltaTime * cm.speed));
+			_characterController.Move((_characterController.isGrounded ? Vector3.zero : Physics.gravity) +
+			                          _currentMovement * (Time.deltaTime * _pc.speed));
 		}
 
 		private void OnEnable() {

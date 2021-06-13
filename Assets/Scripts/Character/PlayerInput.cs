@@ -25,6 +25,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""NormalizeVector2"",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Spawn"",
+                    ""type"": ""Value"",
+                    ""id"": ""6be88630-e321-4473-813d-fea9e0d4cf06"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -104,6 +112,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6537e896-4df5-4835-9c0b-42058ccf367d"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -113,6 +132,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // CharacterController
         m_CharacterController = asset.FindActionMap("CharacterController", throwIfNotFound: true);
         m_CharacterController_Move = m_CharacterController.FindAction("Move", throwIfNotFound: true);
+        m_CharacterController_Spawn = m_CharacterController.FindAction("Spawn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,11 +183,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_CharacterController;
     private ICharacterControllerActions m_CharacterControllerActionsCallbackInterface;
     private readonly InputAction m_CharacterController_Move;
+    private readonly InputAction m_CharacterController_Spawn;
     public struct CharacterControllerActions
     {
         private @PlayerInput m_Wrapper;
         public CharacterControllerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterController_Move;
+        public InputAction @Spawn => m_Wrapper.m_CharacterController_Spawn;
         public InputActionMap Get() { return m_Wrapper.m_CharacterController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -180,6 +202,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnMove;
+                @Spawn.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnSpawn;
+                @Spawn.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnSpawn;
+                @Spawn.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnSpawn;
             }
             m_Wrapper.m_CharacterControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -187,6 +212,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Spawn.started += instance.OnSpawn;
+                @Spawn.performed += instance.OnSpawn;
+                @Spawn.canceled += instance.OnSpawn;
             }
         }
     }
@@ -194,5 +222,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface ICharacterControllerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnSpawn(InputAction.CallbackContext context);
     }
 }

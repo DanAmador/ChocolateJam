@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Shadow {
 	public class ShadowPath : MonoBehaviour {
@@ -10,6 +11,9 @@ namespace Shadow {
 		public int InterpolationToIndex(float interpolation) => (int) (Mathf.Lerp(0, _frames.Count, interpolation));
 
 		public LTDescr splineDescription;
+
+
+		public UnityEvent onCompoundPathLoop = new UnityEvent();
 
 		public Vector3[] RemainingOffsets() {
 			List<Vector3> remainingPoints = new List<Vector3>();
@@ -47,14 +51,23 @@ namespace Shadow {
 		}
 
 
-		public void ClosePath(float duration = 0) {
-			closed = true;
-			_endTime = Time.time;
-			duration = duration == 0 ? Duration : duration;
-			spline = new LTSpline(_frames.Select(frame => frame.position).ToArray());
-			splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
-				.setEase(LeanTweenType.linear)
-				.setLoopPingPong().setOrientToPath(true);
+		public bool ClosePath(float duration = 0, bool runTween = true) {
+			if (_frames.Count > 4) {
+				closed = true;
+				_endTime = Time.time;
+				duration = duration == 0 ? Duration : duration;
+				spline = new LTSpline(_frames.Select(frame => frame.position).ToArray());
+				if (runTween) {
+					splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
+						.setEase(LeanTweenType.linear)
+						.setLoopPingPong()
+						.setOrientToPath(true);
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 
 		void OnDrawGizmos() {
@@ -63,6 +76,7 @@ namespace Shadow {
 			}
 		}
 
+		//Used to calculate compound paths from multiple parents
 		public void UpdatePath(Vector3[] newOffsets, float duration) {
 			_frames.Clear();
 			Vector3 startPoint = transform.position;
@@ -71,7 +85,14 @@ namespace Shadow {
 				startPoint += offset;
 			}
 
-			ClosePath(duration);
+
+			if (ClosePath(duration, false)) {
+				splineDescription = LeanTween.moveSpline(gameObject, spline.pts, duration)
+					.setEase(LeanTweenType.linear)
+					.setLoopPingPong(1)
+					.setOrientToPath(true)
+					.setOnComplete(onCompoundPathLoop.Invoke);
+			}
 		}
 
 		public void Reset() {

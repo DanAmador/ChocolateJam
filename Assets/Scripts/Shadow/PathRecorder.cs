@@ -16,8 +16,8 @@ namespace Shadow {
 
 		private PathDataFrame _lastShadowFrame;
 		private Vector3 _lastPosition, _lastDirection;
-		
-		[Range(0.2f, 2f),SerializeField] private double minSaveDistance;
+
+		[Range(0.2f, 2f), SerializeField] private double minSaveDistance;
 
 		#region Unity Loop
 
@@ -42,14 +42,13 @@ namespace Shadow {
 		private bool CanSaveCurrentPosition => Vector3.Distance(transform.position, _lastPosition) > minSaveDistance;
 
 		private void SaveFrame() {
-			if ( CanSaveCurrentPosition) {
+			if (CanSaveCurrentPosition) {
 				Vector3 t = transform.position;
 				_lastDirection = t - _lastPosition;
 				_lastPosition = t;
 				_lastShadowFrame = new PathDataFrame(t, _lastDirection);
 				shadowPath.Add(_lastShadowFrame);
 			}
-
 		}
 
 		#endregion
@@ -60,12 +59,12 @@ namespace Shadow {
 			_recording = true;
 			shadowPath.Reset();
 		}
+
 		[Button()]
 		public void StopRecording() {
 			SaveFrame();
-			
-			shadowPath.ClosePath();
-			_recording = false;
+
+			if (shadowPath.ClosePath())_recording = false;
 		}
 	}
 }
