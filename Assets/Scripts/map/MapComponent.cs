@@ -15,21 +15,33 @@ public class MapComponent : MonoBehaviour
     }
     [SerializeField] private List<Prop> propSettings;
     [SerializeField] private Bounds mapBounds;
-    [SerializeField] private int resolutionMultiplier;
-    [SerializeField] private int mapWidth;
-    [SerializeField] private int mapHeight;
-    [SerializeField] private  Gradient mapColorGradient;
-    [SerializeField] private float meshHeightMultiplier;
-    [SerializeField] private AnimationCurve meshHeightCurve;
+    [SerializeField] private bool autoUpdate;
 
-    [SerializeField] private float noiseThreshhold;
-    [SerializeField] private int offsetSeed;
-    [SerializeField] [Range(1, 10)] private int octaves;
-    [SerializeField] [Range(-100.0f, 100.0f)] private float fixedOffsetX;
-    [SerializeField] [Range(-100.0f, 100.0f)] private float fixedOffsetY;
-    [SerializeField] [Min(0.0001f)] private int scale;
-    [SerializeField] [Range(0f, 1f)] private float persistance;
-    [SerializeField] [Min(1f)] private float lacunarity;
+    [Serializable]
+    public class MapSettings
+    {
+        public int mapWidth;
+        public int mapHeight;
+        public int tesselation;
+        public int size;
+        public Gradient mapColorGradient;
+        public float meshHeightMultiplier;
+        public AnimationCurve meshHeightCurve;
+
+        public float noiseThreshhold;
+        public int offsetSeed;
+        [Range(1, 10)] public int octaves;
+        [Range(-100.0f, 100.0f)] public float fixedOffsetX;
+        [Range(-100.0f, 100.0f)] public float fixedOffsetY;
+        [Min(0.0001f)] public int scale;
+        [Range(0f, 1f)] public float persistance;
+        [Min(1f)] public float lacunarity;
+        [Range(0.0f, 10.0f)] public float frequency;
+        [Range(-10.0f, 10.0f)] public float ridgeOffset;
+        [Range(0.0f, 2.0f)] public float gain;
+    }
+    [SerializeField, OnValueChanged("OnSettingsChanged")] private MapSettings mapSettings;
+
     private Vector2[] octaveOffsets;
 
     private Transform props;
@@ -45,14 +57,16 @@ public class MapComponent : MonoBehaviour
         meshFilter = transform.GetComponent<MeshFilter>();
         meshRenderer = transform.GetComponent<MeshRenderer>();
         mapBounds = meshRenderer.bounds;
-        mapWidth = (int)transform.localScale.x;
-        mapHeight = (int)transform.localScale.z;
-        octaveOffsets = GetOctaveOffsets(octaves, offsetSeed, fixedOffsetX, fixedOffsetY);
+        octaveOffsets = GetOctaveOffsets(mapSettings.octaves, mapSettings.offsetSeed, mapSettings.fixedOffsetX, mapSettings.fixedOffsetY);
     }
 
     void Start() {
         GenerateMap();
         SpawnProps();
+    }
+
+    public void OnSettingsChanged() {
+        if (autoUpdate) GenerateMap();
     }
 
     public void DrawMap(Texture2D texture, Mesh mesh) {
@@ -61,9 +75,10 @@ public class MapComponent : MonoBehaviour
     }
 
     public void GenerateMap() {
-        Texture2D texture = GenerateTerrainTexture();
+        Init();
         Mesh mesh = GenerateTerrainMesh();
-        //Tesselate();
+        Texture2D texture = GenerateTerrainTexture();
+        Tesselate();
         DrawMap(texture, mesh);
     }
 
@@ -86,11 +101,13 @@ public class MapComponent : MonoBehaviour
         float amplitude = 1;
         float frequency = 1;
         float noiseValue = 0;
+        x = x + mapSettings.fixedOffsetX;
+        y = y + mapSettings.fixedOffsetY;
 
-        for (int i = 0; i < octaves; i++) {
+        for (int i = 0; i < mapSettings.octaves; i++) {
             // higher frequency -> further apart sample points -> height values change faster
-            float sampleX = (x - (mapWidth / 2)) / scale * frequency + octaveOffsets[i].x;
-            float sampleY = (y - (mapHeight / 2)) / scale * frequency + octaveOffsets[i].y;
+            float sampleX = (x - (mapSettings.mapWidth / 2)) / mapSettings.scale * frequency + octaveOffsets[i].x;
+            float sampleY = (y - (mapSettings.mapHeight / 2)) / mapSettings.scale * frequency + octaveOffsets[i].y;
 
             // adjusts perlin noise range to -1 to 1 so that the noise height can decrease
             float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
@@ -98,15 +115,43 @@ public class MapComponent : MonoBehaviour
             noiseValue += perlinValue * amplitude;
 
             // decreases every octave
-            amplitude *= persistance;
+            amplitude *= mapSettings.persistance;
             // increases every octave
-            frequency *= lacunarity;
+            frequency *= mapSettings.lacunarity;
         }
         return noiseValue;
     }
 
+    private float Ridgef(float h) {
+        h = mapSettings.ridgeOffset - Mathf.Abs(h);
+        return (h * h);
+    }
+
+    public float RMF(float x, float y) {
+        float sum = 0.0f;
+        float max = 0.0f;
+        float prev = 1.0f;
+        float amplitude = 0.5f;
+        float maxo = Mathf.Max(Ridgef(0.0f), Ridgef(1.0f));
+        float f = mapSettings.frequency;
+        x = x + mapSettings.fixedOffsetX;
+        y = y + mapSettings.fixedOffsetY;
+
+        for (int i = 0; i < mapSettings.octaves; i++) {
+
+            float n = Ridgef(Mathf.PerlinNoise(x * f, y * f) - 0.5f);
+            float multiplier = amplitude * prev;
+            sum += n * multiplier;
+            max += maxo * multiplier;
+            prev = n;
+            f *= mapSettings.lacunarity;
+            amplitude *= mapSettings.gain;
+        }
+        return (2.0f * sum / max) - 1.0f;
+    }
+
     public Texture2D GenerateTerrainTexture() {
-        Texture2D mapTexture = new Texture2D(mapWidth, mapHeight);
+        Texture2D mapTexture = new Texture2D(mapSettings.size, mapSettings.size);
         mapTexture.name = "MapTexture";
         mapTexture.wrapMode = TextureWrapMode.Repeat;
 
@@ -124,7 +169,7 @@ public class MapComponent : MonoBehaviour
                 u = x * invw;
                 TransformUVtoWorld(u, v, ref p);
 
-                color = mapColorGradient.Evaluate(Perlin(p.x, p.z));
+                color = mapSettings.mapColorGradient.Evaluate(Perlin(p.x, p.z));
                 mapTexture.SetPixel(x, z, color);
             }
         }
@@ -140,7 +185,7 @@ public class MapComponent : MonoBehaviour
     }
 
     public float GetMeshHeight(Vector3 targetPosition) {
-        float height = meshHeightMultiplier * Perlin(targetPosition.x, targetPosition.z);
+        float height = mapSettings.meshHeightMultiplier * mapSettings.meshHeightCurve.Evaluate(Perlin(targetPosition.x, targetPosition.z));
         return height;
     }
 
@@ -163,22 +208,22 @@ public class MapComponent : MonoBehaviour
 
         Mesh terrainMesh = meshFilter.sharedMesh;
         //mesh.Clear(false);
-        Vector3[] vertices = new Vector3[(resolutionMultiplier + 1) * (resolutionMultiplier + 1)];
-        Vector2[] uvs = new Vector2[(resolutionMultiplier + 1) * (resolutionMultiplier + 1)];
+        Vector3[] vertices = new Vector3[(mapSettings.tesselation + 1) * (mapSettings.tesselation + 1)];
+        Vector2[] uvs = new Vector2[(mapSettings.tesselation + 1) * (mapSettings.tesselation + 1)];
 
         int i = 0;
-        float scale = 1;
-        float offW = -mapWidth / 2f;
-        float offD = -mapHeight / 2f;
-        for (int d = 0; d <= resolutionMultiplier; d++) {
-            uv.y = d / (float)resolutionMultiplier;
+        float scale = mapSettings.size / mapSettings.tesselation;
+        float offW = -mapSettings.size / 2f;
+        float offD = -mapSettings.size / 2f;
+        for (int d = 0; d <= mapSettings.tesselation; d++) {
+            uv.y = d / (float)mapSettings.tesselation;
 
-            for (int w = 0; w <= resolutionMultiplier; w++) {
+            for (int w = 0; w <= mapSettings.tesselation; w++) {
                 float x = scale * w + offW;
                 float z = scale * d + offD;
                 float y = 0;
 
-                uv.x = w / (float)resolutionMultiplier;
+                uv.x = w / (float)mapSettings.tesselation;
 
                 uvs[i] = uv;
 
@@ -189,22 +234,22 @@ public class MapComponent : MonoBehaviour
             }
         }
 
-        int[] triangles = new int[resolutionMultiplier * resolutionMultiplier * 2 * 3]; // 2 - polygon per quad, 3 - corners per polygon
+        int[] triangles = new int[mapSettings.tesselation * mapSettings.tesselation * 2 * 3]; // 2 - polygon per quad, 3 - corners per polygon
 
-        for (int d = 0; d < resolutionMultiplier; d++) {
-            for (int w = 0; w < resolutionMultiplier; w++) {
+        for (int d = 0; d < mapSettings.tesselation; d++) {
+            for (int w = 0; w < mapSettings.tesselation; w++) {
                 // quad triangles index.
-                int ti = (d * (resolutionMultiplier) + w) * 6; // 6 - polygons per quad * corners per polygon
+                int ti = (d * (mapSettings.tesselation) + w) * 6; // 6 - polygons per quad * corners per polygon
 
                 // First tringle
-                triangles[ti] = (d * (resolutionMultiplier + 1)) + w;
-                triangles[ti + 1] = ((d + 1) * (resolutionMultiplier + 1)) + w;
-                triangles[ti + 2] = ((d + 1) * (resolutionMultiplier + 1)) + w + 1;
+                triangles[ti] = (d * (mapSettings.tesselation + 1)) + w;
+                triangles[ti + 1] = ((d + 1) * (mapSettings.tesselation + 1)) + w;
+                triangles[ti + 2] = ((d + 1) * (mapSettings.tesselation + 1)) + w + 1;
 
                 // Second triangle
-                triangles[ti + 3] = (d * (resolutionMultiplier + 1)) + w;
-                triangles[ti + 4] = ((d + 1) * (resolutionMultiplier + 1)) + w + 1;
-                triangles[ti + 5] = (d * (resolutionMultiplier + 1)) + w + 1;
+                triangles[ti + 3] = (d * (mapSettings.tesselation + 1)) + w;
+                triangles[ti + 4] = ((d + 1) * (mapSettings.tesselation + 1)) + w + 1;
+                triangles[ti + 5] = (d * (mapSettings.tesselation + 1)) + w + 1;
             }
         }
 
