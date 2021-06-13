@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,11 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 1610187089}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 1496422473, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057028390021, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_RootOrder
@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1e-45
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 7838419057893999951, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -1e-45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8d067e5931ea1f4da7b0687732c4dc5, type: 3}
@@ -315,6 +315,130 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: autoUpdate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.size
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.scale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.octaves
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapBounds.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapBounds.m_Extent.x
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapBounds.m_Extent.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapBounds.m_Extent.z
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.frequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.lacunarity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.offsetSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.persistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.tesselation
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key0.b
+      value: 0.2799039
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key0.g
+      value: 0.42849302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key0.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key1.b
+      value: 0.49182203
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key1.g
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.mapColorGradient.key1.r
+      value: 0.4224813
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: mapSettings.meshHeightCurve.m_Curve.Array.data[1].tangentMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850133692231230208, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
