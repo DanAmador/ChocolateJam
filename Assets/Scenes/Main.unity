@@ -308,7 +308,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: scale
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: octaves
@@ -320,11 +320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: offsetSeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: persistance
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: fixedOffsetY
@@ -336,7 +336,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: meshHeightMultiplier
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
+      propertyPath: resolutionMultiplier
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6850133691539941862, guid: c7fd56322f059b54a8e04ebbe1dd5e19, type: 3}
       propertyPath: mapColorGradient.ctime1

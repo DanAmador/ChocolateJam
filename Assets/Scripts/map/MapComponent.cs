@@ -45,8 +45,8 @@ public class MapComponent : MonoBehaviour
         meshFilter = transform.GetComponent<MeshFilter>();
         meshRenderer = transform.GetComponent<MeshRenderer>();
         mapBounds = meshRenderer.bounds;
-        mapWidth = (int)transform.localScale.x * resolutionMultiplier;
-        mapHeight = (int)transform.localScale.z * resolutionMultiplier;
+        mapWidth = (int)transform.localScale.x;
+        mapHeight = (int)transform.localScale.z;
         octaveOffsets = GetOctaveOffsets(octaves, offsetSeed, fixedOffsetX, fixedOffsetY);
     }
 
@@ -62,8 +62,8 @@ public class MapComponent : MonoBehaviour
 
     public void GenerateMap() {
         Texture2D texture = GenerateTerrainTexture();
-        //Tesselate();
         Mesh mesh = GenerateTerrainMesh();
+        //Tesselate();
         DrawMap(texture, mesh);
     }
 
@@ -167,7 +167,7 @@ public class MapComponent : MonoBehaviour
         Vector2[] uvs = new Vector2[(resolutionMultiplier + 1) * (resolutionMultiplier + 1)];
 
         int i = 0;
-        float scale = mapWidth / resolutionMultiplier;
+        float scale = 1;
         float offW = -mapWidth / 2f;
         float offD = -mapHeight / 2f;
         for (int d = 0; d <= resolutionMultiplier; d++) {
